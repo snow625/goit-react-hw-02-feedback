@@ -4,7 +4,6 @@ import style from "./statistics.module.css";
 import PropTypes from "prop-types";
 
 const Statistics = (props) => {
-  const { good, neutral, bad, total, positivePercentage } = props;
   const keys = Object.keys(props);
   let counter = props.total;
 
@@ -30,13 +29,9 @@ const Statistics = (props) => {
 export default Statistics;
 
 Statistics.propTypes = {
-  good: PropTypes.number,
-  neutral: PropTypes.number,
-  bad: PropTypes.number,
-  total: PropTypes.number,
-  positivePercentage: PropTypes.string,
-};
-
-Notification.propTypes = {
-  message: PropTypes.string,
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.string.isRequired,
 };
