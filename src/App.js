@@ -3,8 +3,6 @@ import Section from "./components/Section";
 import FeedbackOptions from "./components/FeedbackOptions";
 import Statistics from "./components/Statistics";
 
-import PropTypes from "prop-types";
-
 import "modern-normalize/modern-normalize.css";
 import "./index.css";
 
@@ -68,23 +66,3 @@ class App extends Component {
   }
 }
 export default App;
-
-Section.propTypes = {
-  title: PropTypes.string,
-};
-FeedbackOptions.propTypes = {
-  options: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }),
-  onLeaveFeedback: PropTypes.func.isRequired,
-};
-
-Statistics.propTypes = {
-  good: PropTypes.number,
-  neutral: PropTypes.number,
-  bad: PropTypes.number,
-  total: PropTypes.number,
-  positivePercentage: PropTypes.string,
-};
