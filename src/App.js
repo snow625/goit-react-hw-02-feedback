@@ -2,6 +2,7 @@ import { Component } from "react";
 import Section from "./components/Section";
 import FeedbackOptions from "./components/FeedbackOptions";
 import Statistics from "./components/Statistics";
+import Notification from "./components/Notification";
 
 import "modern-normalize/modern-normalize.css";
 import "./index.css";
@@ -11,6 +12,14 @@ class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
+  };
+
+  changed = () => {
+    const arrOfValue = Object.values(this.state);
+    const total = arrOfValue.reduce((acc, el) => {
+      return acc + el;
+    });
+    return total > 0 ? true : false;
   };
 
   handleClick = (name) => {
@@ -45,6 +54,7 @@ class App extends Component {
       handleClick,
       countTotalFeedback,
       countPositiveFeedbackPercentage,
+      changed,
     } = this;
     const { good, neutral, bad } = state;
     return (
@@ -53,13 +63,17 @@ class App extends Component {
           <FeedbackOptions options={state} onLeaveFeedback={handleClick} />
         </Section>
         <Section title="Statistics">
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={countTotalFeedback()}
-            positivePercentage={`${countPositiveFeedbackPercentage()}%`}
-          ></Statistics>
+          {changed() ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={countTotalFeedback()}
+              positivePercentage={`${countPositiveFeedbackPercentage()}%`}
+            ></Statistics>
+          ) : (
+            <Notification message="There is no feedback." />
+          )}
         </Section>
       </>
     );

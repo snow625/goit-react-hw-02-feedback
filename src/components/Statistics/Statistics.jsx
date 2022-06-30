@@ -1,11 +1,9 @@
-import Notification from "../Notification";
 import style from "./statistics.module.css";
 
 import PropTypes from "prop-types";
 
 const Statistics = (props) => {
   const keys = Object.keys(props);
-  let counter = props.total;
 
   const elements = keys.map((el) => {
     let elementText = el.replace(el[0], el[0].toUpperCase());
@@ -19,11 +17,7 @@ const Statistics = (props) => {
       </li>
     );
   });
-  return counter ? (
-    <ul className={style.list}>{elements}</ul>
-  ) : (
-    <Notification message="There is no feedback." />
-  );
+  return <ul className={style.list}>{elements}</ul>;
 };
 
 export default Statistics;
